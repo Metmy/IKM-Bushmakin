@@ -1,28 +1,30 @@
 #include <iostream>
+#include "lcm.h"
+#include <string>
 
 using namespace std;
 
-long long nod(long long a, long long b) {
-    while (b != 0) {
-        long long t = b;
-        b = a % b;
+string nod(string a, string b) {
+    while (b != "0") {
+        string t = b;
+        b = to_string(stoll(a) % stoll(b));
         a = t;
     }
     return a;
 }
 
-long long nok(long long m, long long n) {
-    return (m / nod(m, n)) * n;
+string nok(string m, string n) {
+    return to_string(stoll(m) / stoll(nod(m, n)) * stoll(n));
 }
 
 int main() {
-    long long m, n;
+    string m, n;
     cout << "Введите число m: ";
     cin >> m;
     cout << "Введите число n: ";
     cin >> n;
 
-    long long r = nok(m, n);
+    string r = nok(m, n);
     cout << "Наименьшее общее кратное m и n: " << r << endl;
 
     return 0;
